@@ -1,0 +1,29 @@
+# Common configuration in production and development
+version: "3.9"
+services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "3000:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+  docker-node-app:
+    build: .
+    #ports:
+    #  - "3000:3000"
+    environment:
+      - PORT=3000
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo # we are using the offical mongo image from docker hub
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=carlos
+      - MONGO_INITDB_ROOT_PASSWORD=thepasswordis
+    volumes:
+      - mongo-db:/data/db # save this module with the name of mongo-db
+
+volumes:
+  mongo-db:

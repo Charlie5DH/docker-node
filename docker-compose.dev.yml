@@ -1,0 +1,27 @@
+# Configuration for development
+version: "3.9"
+services:
+  nginx:
+    ports:
+      - "3000:80"
+
+  docker-node-app:
+    build:
+      context: .
+      args:
+        NODE_ENV: development
+    volumes:
+      - "./:/app"
+      - "/app/node_modules"
+    environment:
+      - NODE_ENV=development
+      - MONGO_USER=carlos
+      - MONGO_PASSWORD=thepasswordis
+    command: npm run dev
+
+  mongo:
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=carlos
+      - MONGO_INITDB_ROOT_PASSWORD=thepasswordis
