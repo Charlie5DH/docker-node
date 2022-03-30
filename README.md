@@ -336,8 +336,16 @@ We can check this is working by entering in the app `docker-testing-docker-node-
 
 `mongodb://carlos:thepasswordis@localhost:27017/?authSource=admin`
 
-We have to discover the ports in the `docker-compose.dev.yml`
+We have to discover the ports in the `docker-compose.dev.yml`. We do not do this in production because we don't need to connect with other app to the database.
 
 ## Adding load balancer NGINX
 
 <img src="./assets/Nginx load balance.png" />
+
+**NOTE**: For production we have to configure the enviromental variables in the production machine and put them in the .gitignore file, so you don't upload them to github.
+
+**NOTE**: We have to configure the env variables in the production machine, so docker grabs them from the local env, instead of being hardcoded, as they are in development. To configure env variables in a Linux machine we can use:
+
+`export ENV_VARIABLE_NAME="hello"`
+
+An alternative is to create a `.env` file in root typing: `vi .env` and add all the ENV variables in the file. Then, in the root folder open the `.profile` file and in the bottom, create a new instruction: `set -o allexport; source /root/.env set -o allexport`. Close and reopen the terminal and type `printenv` to see the variables.
