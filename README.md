@@ -349,3 +349,9 @@ We have to discover the ports in the `docker-compose.dev.yml`. We do not do this
 `export ENV_VARIABLE_NAME="hello"`
 
 An alternative is to create a `.env` file in root typing: `vi .env` and add all the ENV variables in the file. Then, in the root folder open the `.profile` file and in the bottom, create a new instruction: `set -o allexport; source /root/.env set -o allexport`. Close and reopen the terminal and type `printenv` to see the variables.
+
+For deployment, we can clone the repo and run `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build`.
+
+To update changes in production after build, we can run `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build` again after pulling for changes in the repository. We can add the `--no-deps` if we don't want to rebuild the databases and other services that wont change in development.
+
+To re-build the container, for whatever reason, we can pass the `--force-recreate --no-deps`. Now, this workflowis not optimal since we have to rebuild in the production server. Instead, we are going to upload the finalized image to Dockerhub and pull the built image in production.
