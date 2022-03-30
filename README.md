@@ -1,6 +1,6 @@
-## Simple NodeJS Docker Application
+## Simple NodeJS Docker Application. A tutorial to Docker using Node and MongoDB.
 
-This is a simple app to test and familiarize with docker following the step in the [freecodecamp.org](https://www.youtube.com/watch?v=9zUHg7xjIqQ&t=1862s) tutorial
+This is a simple app to test and familiarize with docker following the step in the [freecodecamp.org](https://www.youtube.com/watch?v=9zUHg7xjIqQ&t=1862s) tutorial. In this app we create two containers, one with a Node app and other with a MongoDB database, which are connected and with functional APIs.
 
 ### Steps
 
